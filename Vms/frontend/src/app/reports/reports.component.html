@@ -1,0 +1,21 @@
+<a id="one3" class="navbar-collapse navbar-brand" href="#">reports</a>
+<div class="row">
+  <div class="column">
+      <table class="table table-bordered">
+      <thead >
+        <tr >
+           <th>Id</th>
+           <th>Name</th>
+           <th id="one">Check In Time <button class="btn btn-outline-secondary btn-sm float-sm-end" onclick="document.location='http://localhost:4200/visitorlist'">View All</button></th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listcheckin.slice(0, 5); let i = index">
+             <td style="display: none">{{item.rid}}</td>
+             <td>{{item.id}}</td>
+             <td>{{item.visitor_name }}</td>
+             <td>{{item.visitor_name }}/td>
+        </tr>
+      </tbody>
+      </table>
+      </div>

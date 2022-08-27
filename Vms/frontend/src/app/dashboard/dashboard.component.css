@@ -1,0 +1,122 @@
+  
+  * {
+    box-sizing: border-box;
+  }
+    
+  body {
+    text-align: center;
+  }
+
+  
+  /* Float columns */
+  .column1 {
+    float: left;
+    width: 33%;
+    padding: 0 5px;
+    margin: 0 0 50px 0
+  }
+    
+  .row1 {
+    margin: 0 -5px;
+  }
+
+  .row1:after {
+    content: "";
+    display: table;
+  }
+
+  /* Style the cards */
+  .card {
+    padding: 10px;
+    text-align: center;
+    background-color: gray;
+    color: white;
+    }
+    
+  .card:hover {
+    transform: scale(1.1);
+    background-color: black;
+    transition-duration: 2s;
+    color: white;
+  }
+    
+  .fa {
+    font-size:x-large;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  #one2{
+    font-weight: bold;
+    margin: 0% 48%;
+    font-size: 30px;
+    font-family: 'Shippori Mincho', serif;
+    text-align: center;
+    justify-content: center;
+    text-decoration: underline
+}
+
+  /* .row {
+    margin-left:-5px;
+    margin-right:-5px;
+  } */
+    
+  .column {
+    float: left;
+    width: 33%;
+    padding: 0 5px;
+  }
+
+  .row1 {
+    margin: 0 -5px;
+  }
+
+  .row1:after {
+    content: "";
+    display: table;
+  }
+
+  table {
+    font-size: larger;
+    margin-left: auto; 
+    margin-right: auto;
+  }
+
+  table{
+    border-collapse: collapse;
+    border-spacing: 10px;
+    width: 100%;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+     color: rgb(8, 8, 8);
+
+  }
+td,th{
+    padding: 20px; 
+
+  }
+
+thead{
+  background-color: beige;
+}
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other on screens that are smaller than 600 px */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+    #checkin{
+      font-size:large
+    }
+    #checkout{
+      font-size: large;
+    }
+    #schedule{
+      font-size: large;
+    }
+  }

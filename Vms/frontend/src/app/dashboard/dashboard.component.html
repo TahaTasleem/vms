@@ -1,0 +1,91 @@
+<a id="one2" class="navbar-collapse navbar-brand" href="#">Dashboard</a>
+<div class="row">
+<div class="row1">
+  <div class="column1">
+    <div class="card">
+    <p><i class="fa fa-user"></i></p>
+    <h3 >{{countCheckIn}}</h3>
+    <h3 id="checkin">Checked In Visitors</h3>
+    </div>
+  </div>
+  <div class="column1">
+    <div class="card">
+    <p><i class="fa fa-check"></i></p>
+    <h3 >{{countCheckOut}}</h3>
+    <h3 id="checkout">Checked Out Visitors</h3>
+    </div>
+  </div>
+  <div class="column1">
+    <div class="card">
+    <p><i class="fa fa-smile-o"></i></p>
+    <h3 >{{countScheduled}}</h3>
+    <h3 id="schedule">Expected Visitors</h3>
+    </div>
+  </div>
+</div>
+ 
+
+  <div class="row">
+  <div class="column">
+      <table class="table table-bordered">
+      <thead >
+        <tr >
+           <th>Id</th>
+           <th>Name</th>
+           <th id="one">Check In Time <button class="btn btn-outline-secondary btn-sm float-sm-end" onclick="document.location='http://localhost:4200/visitorlist'">View All</button></th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listcheckin.slice(0, 5); let i = index">
+             <td style="display: none">{{item.rid}}</td>
+             <td>{{item.id}}</td>
+             <td>{{item.visitor_name }}</td>
+             <td>{{item.checkin_time | date:'medium' }}</td>
+        </tr>
+      </tbody>
+      </table>
+      </div>
+
+      <div class="column">
+        <table class="table table-bordered" >
+        <thead>
+          <tr>
+            
+           <th scope="col">Id</th>
+           <th scope="col">Name</th>
+           <th scope="col" id="two">Check Out Time  <button class="btn btn-outline-secondary btn-sm float-sm-end" onclick="document.location='http://localhost:4200/visitorlist'">View All</button></th> 
+           </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listcheckout.slice(0, 5); let i = index">
+             <td style="display: none">{{item.rid}}</td>
+             <td>{{item.id}}</td>
+             <td>{{item.visitor_name }}</td>
+             <td>{{item.checkout_time| date:'medium' }}</td>
+             
+        </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="column">
+      <table  class="table table-bordered">
+      <thead>
+        <tr>
+           <th>Id</th>
+           <th>Name</th>
+           <th id="three">Schedule Time <button class="btn btn-outline-secondary btn-sm float-sm-end" onclick="document.location='http://localhost:4200/visitorlist'">View All</button></th> 
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of listschedule.slice(0, 5); let i = index">
+             <td style="display: none">{{item.rid}}</td>
+             <td>{{item.id}}</td>
+             <td>{{item.visitor_name }}</td>
+             <td>{{item.checkin_time | date:'medium'}}</td>
+        </tr>
+      </tbody>
+      </table>
+      </div>
+  </div>
+</div>

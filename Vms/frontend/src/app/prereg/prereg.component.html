@@ -1,0 +1,273 @@
+<a id="one3" class="navbar-collapse navbar-brand" href="#">Pre Registration</a>
+<div class="container-fluid2">
+  <div class="row">
+    <div class="col min-vh-100 p-4">
+      <div class="container"  >
+        <form [formGroup]="userForm">
+
+           <div class="row">
+            <div class="col-25">
+              <label>Employee Name:</label>
+            </div>
+            <div class="col-75 ng-autocomplete">
+            
+            <ng-autocomplete 
+              [data]="list"
+              [searchKeyword]="keyword"
+              placeholder="Select Employee Name"
+              (selected)='EmpListwithname($event)'
+              name="name"
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate"
+              >                                 
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.name"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+            </ng-template>
+              <!-- <select formControlName="emp_name" name="emp_name" (click)="EmpListwithname($event)">
+                <option *ngFor="let item of list async">{{item.emp_name}}</option>
+              </select> -->
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="col-25">
+              <label>Employee ID:</label>
+            </div>
+            <datalist id="mylist" *ngFor="let item of emp_list">
+              <option value="{{item.employee_number}}">
+            </datalist>
+            <div class="col-75">
+              <input type="number" list="mylist" *ngFor="let item of emp_list" formControlName="employee_number"  [(ngModel)]="item.employee_number" name='employee_number'>
+            </div>
+          </div> 
+
+          <div class="row">
+          <div class="col-25">
+              <label>Employee Designation:</label>
+            </div>
+            <div class="col-75">
+              <input type="text"  *ngFor="let item of emp_list" formControlName="position_name"  [(ngModel)]="item.position_name" name='position_name'>
+            </div>
+          </div> 
+
+          <div class="row">
+          <div class="col-25">
+              <label>Employee Email Address:</label>
+            </div>
+            <div class="col-75">
+              <input type="text"  *ngFor="let item of emp_list" formControlName="email_address"  [(ngModel)]="item.email_address" name='email_address'>
+            </div>
+          </div> 
+
+
+          
+          <div class="row">
+            <div class="col-25">
+              <label>CNIC Number:</label>
+            </div>
+            <div class="col-75">
+              <ng-container *ngIf="visitorlistfromcnic?.length==0;else show">
+              <input type="text" placeholder="Enter CNIC Number" formControlName="cnic" class="form-control" (click)="getVisitorfromcnic($event)" required  [ngClass]="{ 'is-invalid': f['cnic'].touched && f['cnic'].errors, 'is-valid': f['cnic'].valid }" />
+              <div *ngIf="f['cnic'].touched && f['cnic'].errors" class="invalid-feedback">
+                <div *ngIf="f['cnic'].errors['required']">CNIC is required!</div>
+                <div *ngIf="f['cnic'].errors['pattern']">Pattern Only Accepted!</div>
+                <div *ngIf="f['cnic'].errors['maxlength']">CNIC is not valid format!</div>
+              </div>
+            </ng-container>
+            <ng-template #show>
+              <input type="text" placeholder="Enter CNIC Number" formControlName="cnic" class="form-control" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.cnic}}" required  [ngClass]="{ 'is-invalid': f['cnic'].touched && f['cnic'].errors, 'is-valid': f['cnic'].valid }" />
+            </ng-template>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label>Contact Number:</label>
+            </div>
+            <div class="col-75" >
+              <ng-container *ngIf="visitorlistfromcnic?.length!==0; else done">
+                <input type="text" placeholder="Enter Contact Number" formControlName="contact_no" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.contact_no}}" class="form-control" required   [ngClass]="{ 'is-invalid': f['contact_no'].touched && f['contact_no'].errors, 'is-valid': f['contact_no'].valid }"/>
+                <div *ngIf="f['contact_no'].touched && f['contact_no'].errors" class="invalid-feedback">
+                  <div *ngIf="f['contact_no'].errors['required']">Contact No is required!</div>
+                  <div *ngIf="f['contact_no'].errors['pattern']">Pattern Only Accepted!</div>
+                  <div *ngIf="f['contact_no'].errors['maxlength']">Contact No is not valid format!</div>
+                </div>
+              </ng-container>
+              <ng-template #done>
+                <input type="text" placeholder="Enter Contact Number" formControlName="contact_no" class="form-control" (click)="getVisitorfromcontactno($event)" required   [ngClass]="{ 'is-invalid': f['contact_no'].touched && f['contact_no'].errors, 'is-valid': f['contact_no'].valid }"/>
+              <div *ngIf="f['contact_no'].touched && f['contact_no'].errors" class="invalid-feedback">
+                <div *ngIf="f['contact_no'].errors['required']">Contact No is required!</div>
+                <div *ngIf="f['contact_no'].errors['pattern']">Pattern Only Accepted!</div>
+                <div *ngIf="f['contact_no'].errors['maxlength']">Contact No is not valid format!</div>
+              </div>
+              </ng-template>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label>Visitor Name:</label><br>
+            </div>
+            <div class="col-75">
+              <ng-container *ngIf="visitorlistfromcnic?.length!==0; else done1">
+              <input type="text" placeholder="Enter Visitor Name" class="form-control" formControlName="visitor_name" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.visitor_name}}" required  [ngClass]="{ 'is-invalid': f['visitor_name'].touched && f['visitor_name'].errors, 'is-valid': f['visitor_name'].valid }" />
+              <div *ngIf="f['visitor_name'].touched && f['visitor_name'].errors" class="invalid-feedback">
+                <div *ngIf="f['visitor_name'].errors['required']">Name is required!</div>
+              </div>
+            </ng-container>
+            <ng-template #done1>
+              <input type="text" placeholder="Enter Visitor Name" class="form-control" formControlName="visitor_name"  required  [ngClass]="{ 'is-invalid': f['visitor_name'].touched && f['visitor_name'].errors, 'is-valid': f['visitor_name'].valid }" />
+              <div *ngIf="f['visitor_name'].touched && f['visitor_name'].errors" class="invalid-feedback">
+                <div *ngIf="f['visitor_name'].errors['required']">Name is required!</div>
+              </div>
+            </ng-template>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label>Visit ID:</label>
+            </div>
+            <div class="col-75">
+              <input type="number" placeholder="Enter Visitor ID" formControlName="id"  name="id" [ngModel]="lastempId.id+1"  class="col-85"  readonly/>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-25">
+                <label>Organization Name:</label>
+              </div>
+              <div class="col-75">
+                <ng-container *ngIf="visitorlistfromcnic?.length!==0; else done2">
+                <input type="text" placeholder="Enter Organization Name" formControlName="organization_name" class="form-control" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.organization_name}}" required  [ngClass]="{ 'is-invalid': f['organization_name'].touched && f['organization_name'].errors, 'is-valid': f['organization_name'].valid }"/>
+                <div *ngIf="f['organization_name'].touched && f['organization_name'].errors" class="invalid-feedback">
+                  <div *ngIf="f['organization_name'].errors['required']">Organization Name is required!</div>
+                </div>
+              </ng-container>
+              <ng-template #done2>
+                <input type="text" placeholder="Enter Organization Name" formControlName="organization_name" class="form-control" required  [ngClass]="{ 'is-invalid': f['organization_name'].touched && f['organization_name'].errors, 'is-valid': f['organization_name'].valid }"/>
+                <div *ngIf="f['organization_name'].touched && f['organization_name'].errors" class="invalid-feedback">
+                  <div *ngIf="f['organization_name'].errors['required']">Organization Name is required!</div>
+                </div>
+              </ng-template>
+              </div> 
+              </div>
+        
+              <div class="row">
+                <div class="col-25">
+                  <label>Purpose:</label>
+                </div>
+                <div class="col-75">
+                  <ng-container  *ngIf="visitorlistfromcnic?.length!==0; else done3">
+                  <input type="text" placeholder="Enter Purpose of Visit" formControlName="purpose" class="form-control" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.purpose}}" required  [ngClass]="{ 'is-invalid': f['purpose'].touched && f['purpose'].errors, 'is-valid': f['purpose'].valid }" />
+                  <div *ngIf="f['purpose'].touched && f['purpose'].errors" class="invalid-feedback">
+                    <div *ngIf="f['purpose'].errors['required']">Purpose is required!</div>
+                  </div>
+                </ng-container>
+                <ng-template #done3>
+                  <input type="text" placeholder="Enter Purpose of Visit" formControlName="purpose" class="form-control" required  [ngClass]="{ 'is-invalid': f['purpose'].touched && f['purpose'].errors, 'is-valid': f['purpose'].valid }" />
+                  <div *ngIf="f['purpose'].touched && f['purpose'].errors" class="invalid-feedback">
+                    <div *ngIf="f['purpose'].errors['required']">Purpose is required!</div>
+                  </div>
+                </ng-template>
+                </div>
+              </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label>Status:</label>
+            </div>
+            <div class="col-75">
+              <select formControlName="status" name="status">
+                <option default>Scheduled</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+              <label>Check In time:</label>
+            </div>
+            <div class="col-75">
+              <input type="datetime-local" id="checkin_time" formControlName="checkin_time" name="checkin_time" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label>Gender:</label>
+            </div>
+           
+            <div class="col-75">
+            <ng-container *ngIf="visitorlistfromcnic?.length!==0; else done4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="male" name="gender" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.gender}}" formControlName="gender" >
+                Male
+              </div>
+              
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="female" name="gender" *ngFor="let item of visitorlistfromcnic" ngModel="{{item.gender}}" formControlName="gender">
+                Female
+              </div>
+            
+            </ng-container>
+            <ng-template #done4>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="male" name="gender" formControlName="gender" >
+                Male
+              </div>
+              
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="female" name="gender" formControlName="gender">
+                Female
+              </div>
+            </ng-template>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label>Person Status:</label>
+            </div>
+            <div class="col-75">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Individual" name="status2" formControlName="status2" (click)="selectGroupId($event)">
+              Individual
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Group" name="status2" formControlName="status2" (click)="selectGroupId($event)">
+              Group
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="New Group" name="status2" formControlName="status2" (click)="selectGroupId($event)">
+              New Group
+            </div>
+          </div>
+        </div>
+            <!-- <div class="col-50"></div> -->
+            <!-- <div class="row"> -->
+              <div class="col-25">
+                <label>Group Id:</label>
+              </div>
+              <div class="col-75">
+                <input formControlName="group_id" name="group_id" [(ngModel)]="this.lastdummyId.group_id">
+         
+              </div>
+          <div class="form-group">
+            <button type="register" class="btn btn-primary" (click)="addForm()"> Register</button>
+            <button type="reset" class="btn btn-warning float-right" (click)="refresh()">
+              Reset
+            </button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>

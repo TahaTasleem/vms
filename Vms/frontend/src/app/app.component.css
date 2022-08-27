@@ -1,0 +1,44 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@800&display=swap');
+li{
+    font-family: 'Shippori Mincho', serif;
+}
+/* #one{
+    margin: 5px 5px;
+
+} */
+i{
+    font-size: larger;
+}
+#one1 {
+    color: #D40B17;
+    font-weight: bold;
+    padding: 0px 5px;
+} 
+#one2{
+    font-weight: bold;
+}
+#nav1 {
+    background-color: #CED7D8;
+    /* display: inline-block;
+    width: 100%; */
+    /* justify-content: center;
+    align-items: center; */
+}
+#offcanvas{
+    background-color:  #CED7D8;
+}
+span,i{
+    color:black;
+    font-weight: 500;
+    font-size: large;
+}
+label{
+    font-weight: bold;
+    font-size: large;
+}
+button{
+    margin-top: 2%;
+    margin-right: 2%;
+}
